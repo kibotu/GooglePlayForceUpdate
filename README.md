@@ -17,15 +17,17 @@ Android Library for checking the current uploaded version on the Google Play
 	}
 		
 	dependencies {
-        compile 'compile 'com.github.kibotu:gpversionchecker:-SNAPSHOT'
+        compile 'com.github.kibotu:gpversionchecker:-SNAPSHOT'
     }
    
 
-### How to build the lib:
+### How to build the lib
 
     gradle clean lib:build
-    
-2) Add 
+
+### How to use
+
+ Add 
 ```java 
   new GPVersionChecker.Builder(this).create();
 ```
