@@ -2,6 +2,7 @@ package com.robohorse.gpversionchecker;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 
 import com.robohorse.gpversionchecker.base.CheckingStrategy;
 import com.robohorse.gpversionchecker.base.VersionInfoListener;
@@ -41,7 +42,9 @@ public class GPVersionChecker {
     }
 
     private static void startService(Activity activity) {
-        activity.startService(new Intent(activity, VersionCheckerService.class));
+        Intent service = new Intent(activity, VersionCheckerService.class);
+        service.putExtra(VersionCheckerService.CUSTOM_PACKAGE, packageName);
+        activity.startService(service);
     }
 
     protected static void onResponseReceived(final Version version) {

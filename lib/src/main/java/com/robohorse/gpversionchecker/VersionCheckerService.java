@@ -25,7 +25,7 @@ import static android.text.TextUtils.isEmpty;
 public class VersionCheckerService extends IntentService {
     private static final String REFERRER = "http://www.google.com";
     private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0";
-
+    public static final String CUSTOM_PACKAGE = "CUSTOM_PACKAGE";
     private static final int CONNECTION_TIMEOUT = 30000;
     private String customPackageName;
 
@@ -38,7 +38,7 @@ public class VersionCheckerService extends IntentService {
 
         Bundle bundle = intent.getExtras();
         if (bundle != null)
-            customPackageName = bundle.getString(PackageInfo.class.getCanonicalName());
+            customPackageName = bundle.getString(CUSTOM_PACKAGE);
 
         Version version = obtainDataFromGooglePlay();
         if (null != version) {
