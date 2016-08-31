@@ -35,6 +35,7 @@ android {
         checkReleaseBuilds false
         abortOnError false
         ignoreWarnings true
+        disable 'InvalidPackage'
     }
 }
 
@@ -42,4 +43,10 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile project(path: ':lib')
+}
+
+retrolambda {
+    jvmArgs '-noverify'
+    defaultMethods false
+    incremental true
 }

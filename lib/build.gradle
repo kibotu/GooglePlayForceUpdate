@@ -38,6 +38,7 @@ android {
         checkReleaseBuilds false
         abortOnError false
         ignoreWarnings true
+        disable 'InvalidPackage'
     }
 }
 
@@ -56,6 +57,12 @@ dependencies {
     testCompile 'org.robolectric:shadows-multidex:3.0'
 
     compile 'org.jsoup:jsoup:1.9.2'
+}
+
+retrolambda {
+    jvmArgs '-noverify'
+    defaultMethods false
+    incremental true
 }
 
 // build a jar with source files
