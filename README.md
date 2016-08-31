@@ -1,15 +1,30 @@
 # GPVersionChecker
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-GPVersionChecker-green.svg?style=true)](https://android-arsenal.com/details/1/3281)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-GPVersionChecker-green.svg?style=true)](https://android-arsenal.com/details/1/3281) [![](https://jitpack.io/v/kibotu/com.robohorse.gpsversionchecker.svg)](https://jitpack.io/#kibotu/com.robohorse.gpsversionchecker) [![Build Status](https://travis-ci.org/kibotu/com.robohorse.gpsversionchecker.svg?branch=master)](https://travis-ci.org/kibotu/com.robohorse.gpsversionchecker) [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15) [![Gradle Version](https://img.shields.io/badge/gradle-3.0-green.svg)](https://docs.gradle.org/current/release-notes) [![Licence](https://img.shields.io/badge/licence-Apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0) [![Retrolambda](https://img.shields.io/badge/java-8-green.svg)](https://github.com/evant/gradle-retrolambda) [![Javadoc](https://img.shields.io/badge/javadoc-SNAPSHOT-green.svg)](https://jitpack.io/com/github/kibotu/com.robohorse.gpsversionchecker/develop-SNAPSHOT/javadoc/index.html)
+
 <p>
 Android Library for checking the current uploaded version on the Google Play
 </p>
 
 #Quick start
 
-1) Just add this dependency into your build.gradle
-```gradle
-compile 'com.robohorse.gpversionchecker:gpversionchecker:1.0.6'
-```
+
+### How to install
+	
+	repositories {
+	    maven {
+	        url "https://jitpack.io"
+	    }
+	}
+		
+	dependencies {
+        compile 'com.github.kibotu:net.kibotu.android.deviceinfo:-SNAPSHOT'
+    }
+   
+
+### How to build the lib:
+
+    gradle clean lib:build
+    
 2) Add 
 ```java 
   new GPVersionChecker.Builder(this).create();
@@ -22,7 +37,11 @@ into your Activity.java
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        new GPVersionChecker.Builder(this).create();
+        new GPVersionChecker.Builder(this)
+                .setCheckingStrategy(CheckingStrategy.ALWAYS)
+                // .showDialog(false) default true
+                .setVersionInfoListener(version -> Log.v(TAG, "version=" + version))
+                .create();
     }
 ```
 
