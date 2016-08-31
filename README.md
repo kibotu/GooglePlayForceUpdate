@@ -17,7 +17,7 @@ Android Library for checking the current uploaded version on the Google Play
 	}
 		
 	dependencies {
-        compile 'com.github.kibotu:GooglePlayForceUpdate:-SNAPSHOT'
+        compile 'com.github.kibotu:GooglePlayForceUpdate:SNAPSHOT'
     }
    
 
