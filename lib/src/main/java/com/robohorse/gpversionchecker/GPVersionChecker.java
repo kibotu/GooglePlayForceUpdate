@@ -20,7 +20,8 @@ public class GPVersionChecker {
     private static WeakReference<Activity> activityWeakReference;
     private static VersionInfoListener versionInfoListener;
     private static CheckingStrategy strategy;
-    public static boolean useLog;
+    public static boolean useLog = false;
+    public static String packageName;
     private static UIHelper uiHelper;
     private static SharedPrefsHelper sharedPrefsHelper;
     private static boolean showDialog = true;
@@ -94,7 +95,7 @@ public class GPVersionChecker {
         }
 
         /**
-         * Set logging
+         * Set logging. Default <code>{@value GPVersionChecker#useLog}</code>
          *
          * @return Builder
          */
@@ -130,6 +131,19 @@ public class GPVersionChecker {
          */
         public Builder create() {
             proceed();
+            return this;
+        }
+
+        /**
+         * Sets custom package name for testing purposes.
+         *
+         * Default is {@link android.content.pm.PackageInfo#versionName}
+         *
+         * @param packageName Custom package name.
+         * @return Builder
+         */
+        public Builder setCustomPackageName(String packageName) {
+            GPVersionChecker.packageName = packageName;
             return this;
         }
     }

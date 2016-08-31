@@ -6,13 +6,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.robohorse.gpversionchecker.GPVersionChecker;
 import com.robohorse.gpversionchecker.R;
 import com.robohorse.gpversionchecker.domain.Version;
+
+import static android.text.TextUtils.isEmpty;
 
 /**
  * Created by robohorse on 06.03.16.
@@ -20,12 +22,7 @@ import com.robohorse.gpversionchecker.domain.Version;
 public class UIHelper {
 
     public void showInfoView(final Activity activity, final Version version) {
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                showDialogOnUIThread(activity, version);
-            }
-        });
+        activity.runOnUiThread(() -> showDialogOnUIThread(activity, version));
     }
 
     private void showDialogOnUIThread(final Context context, Version version) {
@@ -36,17 +33,9 @@ public class UIHelper {
         AlertDialog dialog = new AlertDialog.Builder(context)
                 .setTitle(R.string.gpvch_header)
                 .setView(view)
-                .setPositiveButton(R.string.gpvch_button_positive, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        openGooglePlay(context);
-                    }
-                })
-                .setNegativeButton(R.string.gpvch_button_negative, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                .setPositiveButton(R.string.gpvch_button_positive, (dialogInterface, i) -> openGooglePlay(context))
+                .setNegativeButton(R.string.gpvch_button_negative, (dialogInterface, i) -> {
 
-                    }
                 })
                 .create();
         dialog.show();
@@ -59,7 +48,7 @@ public class UIHelper {
         TextView tvNews = (TextView) view.findViewById(R.id.tvChanges);
         String lastChanges = version.getChanges();
 
-        if (!TextUtils.isEmpty(lastChanges)) {
+        if (!isEmpty(lastChanges)) {
             tvNews.setText(lastChanges);
         } else {
             view.findViewById(R.id.lnChangesInfo).setVisibility(View.GONE);
@@ -67,7 +56,7 @@ public class UIHelper {
     }
 
     private void openGooglePlay(Context context) {
-        final String packageName = context.getApplicationContext().getPackageName();
+        final String packageName = isEmpty(GPVersionChecker.packageName) ? context.getApplicationContext().getPackageName() : GPVersionChecker.packageName;
         final String url = context.getString(R.string.gpvch_google_play_url) + packageName;
 
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));

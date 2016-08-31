@@ -41,6 +41,7 @@ into your Activity.java
         
         new GPVersionChecker.Builder(this)
                 .setCheckingStrategy(CheckingStrategy.ALWAYS)
+                // .setCustomPackageName("com.sample") // for debugging purposes while the app is not published in stores yet
                 // .showDialog(false) default true
                 .setVersionInfoListener(version -> Log.v(TAG, "version=" + version))
                 .create();
