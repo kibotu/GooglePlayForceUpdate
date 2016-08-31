@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         new GPVersionChecker.Builder(this)
                 .setCheckingStrategy(CheckingStrategy.ALWAYS)
                 .showDialog(true)
+                .forceUpdate(false)
                 .setCustomPackageName("net.kibotu.android.deviceinfo")
                 .setVersionInfoListener(version -> Log.v(TAG, "version=" + version))
                 .create();

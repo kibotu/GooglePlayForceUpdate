@@ -26,6 +26,7 @@ public class GPVersionChecker {
     private static UIHelper uiHelper;
     private static SharedPrefsHelper sharedPrefsHelper;
     private static boolean showDialog = true;
+    public static boolean forceUpdate = false;
 
     private static void proceed() {
         Activity activity = activityWeakReference.get();
@@ -147,6 +148,17 @@ public class GPVersionChecker {
          */
         public Builder setCustomPackageName(String packageName) {
             GPVersionChecker.packageName = packageName;
+            return this;
+        }
+
+        /**
+         * Removes possibility to skip the dialog. Default <code>{@value GPVersionChecker#forceUpdate}</code>
+         *
+         * @param forceUpdate true for forcing
+         * @return Builder
+         */
+        public Builder forceUpdate(boolean forceUpdate) {
+            GPVersionChecker.forceUpdate = forceUpdate;
             return this;
         }
     }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GPVersionChecker</string>
+    <string name="app_name">GooglePlayForceUpdate</string>
 
     <string name="gpvch_header">New version is available!</string>
     <string name="gpvch_button_positive">Update current version</string>

@@ -3,7 +3,6 @@ package com.robohorse.gpversionchecker.helper;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -30,14 +29,31 @@ public class UIHelper {
         View view = inflater.inflate(R.layout.gpvch_layout_dialog, null);
         bindVersionData(view, version, context);
 
-        AlertDialog dialog = new AlertDialog.Builder(context)
-                .setTitle(R.string.gpvch_header)
+        final AlertDialog dialog = new AlertDialog.Builder(context).setTitle(R.string.gpvch_header)
+                .setCancelable(!GPVersionChecker.forceUpdate)
                 .setView(view)
-                .setPositiveButton(R.string.gpvch_button_positive, (dialogInterface, i) -> openGooglePlay(context))
+                .setPositiveButton(R.string.gpvch_button_positive, (dialogInterface, i) -> {
+                })
                 .setNegativeButton(R.string.gpvch_button_negative, (dialogInterface, i) -> {
 
                 })
+                .setOnKeyListener((dialog1, keyCode, event) -> GPVersionChecker.forceUpdate)
                 .create();
+
+        dialog.setOnShowListener(dialogInterface -> {
+
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                    .setOnClickListener(v -> {
+
+                        if (!GPVersionChecker.forceUpdate)
+                            dialog.dismiss();
+
+                        openGooglePlay(context);
+                    });
+
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setVisibility(GPVersionChecker.forceUpdate ? View.GONE : View.VISIBLE);
+        });
+
         dialog.show();
     }
 

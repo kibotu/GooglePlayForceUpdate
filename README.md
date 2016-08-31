@@ -1,5 +1,5 @@
-# GPVersionChecker
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-GPVersionChecker-green.svg?style=true)](https://android-arsenal.com/details/1/3281) [![](https://jitpack.io/v/kibotu/gpversionchecker.svg)](https://jitpack.io/#kibotu/gpversionchecker) [![Build Status](https://travis-ci.org/kibotu/gpversionchecker.svg?branch=master)](https://travis-ci.org/kibotu/gpversionchecker) [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15) [![Gradle Version](https://img.shields.io/badge/gradle-3.0-green.svg)](https://docs.gradle.org/current/release-notes) [![Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](https://raw.githubusercontent.com/kibotu/gpversionchecker/master/LICENSE) [![Retrolambda](https://img.shields.io/badge/java-8-green.svg)](https://github.com/evant/gradle-retrolambda) [![Javadoc](https://img.shields.io/badge/javadoc-SNAPSHOT-green.svg)](https://jitpack.io/com/github/kibotu/gpversionchecker/master-SNAPSHOT/javadoc/index.html)
+# GooglePlayForceUpdate
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-GooglePlayForceUpdate-green.svg?style=true)](https://android-arsenal.com/details/1/3281) [![](https://jitpack.io/v/kibotu/GooglePlayForceUpdate.svg)](https://jitpack.io/#kibotu/GooglePlayForceUpdate) [![Build Status](https://travis-ci.org/kibotu/GooglePlayForceUpdate.svg?branch=master)](https://travis-ci.org/kibotu/GooglePlayForceUpdate) [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15) [![Gradle Version](https://img.shields.io/badge/gradle-3.0-green.svg)](https://docs.gradle.org/current/release-notes) [![Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](https://raw.githubusercontent.com/kibotu/GooglePlayForceUpdate/master/LICENSE) [![Retrolambda](https://img.shields.io/badge/java-8-green.svg)](https://github.com/evant/gradle-retrolambda) [![Javadoc](https://img.shields.io/badge/javadoc-SNAPSHOT-green.svg)](https://jitpack.io/com/github/kibotu/GooglePlayForceUpdate/master-SNAPSHOT/javadoc/index.html)
 
 <p>
 Android Library for checking the current uploaded version on the Google Play
@@ -17,7 +17,7 @@ Android Library for checking the current uploaded version on the Google Play
 	}
 		
 	dependencies {
-        compile 'com.github.kibotu:gpversionchecker:-SNAPSHOT'
+        compile 'com.github.kibotu:GooglePlayForceUpdate:-SNAPSHOT'
     }
    
 
@@ -41,6 +41,7 @@ into your Activity.java
         
         new GPVersionChecker.Builder(this)
                 .setCheckingStrategy(CheckingStrategy.ALWAYS)
+                // .forceUpdate(false) // removes possibility to skip the update dialog, default is false
                 // .setCustomPackageName("com.sample") // for debugging purposes while the app is not published in stores yet
                 // .showDialog(false) default true
                 .setVersionInfoListener(version -> Log.v(TAG, "version=" + version))
@@ -61,7 +62,7 @@ This library does not produce memory leaks - all context usages are leak-safe.
 
 You can override string resource, that you want:
 ```xml
-    <string name="app_name">GPVersionChecker</string>
+    <string name="app_name">GooglePlayForceUpdate</string>
 
     <string name="gpvch_header">New version is available!</string>
     <string name="gpvch_button_positive">Update current version</string>
