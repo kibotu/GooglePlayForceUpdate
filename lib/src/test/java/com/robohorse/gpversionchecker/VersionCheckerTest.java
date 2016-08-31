@@ -2,8 +2,6 @@ package com.robohorse.gpversionchecker;
 
 import android.app.Activity;
 
-import com.robohorse.gpversionchecker.BuildConfig;
-import com.robohorse.gpversionchecker.GPVersionChecker;
 import com.robohorse.gpversionchecker.domain.Version;
 import com.robohorse.gpversionchecker.helper.SharedPrefsHelper;
 import com.robohorse.gpversionchecker.helper.UIHelper;

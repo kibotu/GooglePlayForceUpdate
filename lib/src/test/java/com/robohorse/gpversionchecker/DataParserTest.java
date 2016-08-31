@@ -1,6 +1,5 @@
 package com.robohorse.gpversionchecker;
 
-import com.robohorse.gpversionchecker.BuildConfig;
 import com.robohorse.gpversionchecker.domain.Version;
 import com.robohorse.gpversionchecker.helper.DataParser;
 import com.robohorse.gpversionchecker.utils.AssetsReader;

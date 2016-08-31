@@ -2,7 +2,6 @@ package com.robohorse.gpversionchecker;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 
 import com.robohorse.gpversionchecker.base.CheckingStrategy;
 import com.robohorse.gpversionchecker.base.VersionInfoListener;
@@ -140,7 +139,7 @@ public class GPVersionChecker {
 
         /**
          * Sets custom package name for testing purposes.
-         *
+         * <p>
          * Default is {@link android.content.pm.PackageInfo#versionName}
          *
          * @param packageName Custom package name.
